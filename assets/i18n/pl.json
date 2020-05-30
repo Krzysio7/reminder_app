@@ -2,5 +2,14 @@
   "weather" : "Pogoda",
   "reminder" : "Przypomnienia",
   "home" : "Ekran główny",
-  "undefined_page" : "Ekran Niezdefiniowany"
+  "undefined_page" : "Ekran Niezdefiniowany",
+  "enter_remind_title" : "Wprowadź tytuł przypomnienia",
+  "enter_remind_description" : "Wprowadź opis przypomnienia",
+  "enabled" : "Włączone",
+  "disabled" : "Wyłączone",
+  "save" : "ZAPISZ",
+  "choose_date" : "Wybierz datę przypomnienia:",
+  "choose_time" : "Wybierz godzinę przypomnienia:",
+  "title_required" : "Tytuł powiadomienia jest wymagany",
+  "description_required" : "Opis powiadomienia jest wymagany"
 }
