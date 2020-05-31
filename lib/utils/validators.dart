@@ -22,4 +22,17 @@ abstract class Validators {
     }
     return null;
   }
+
+  static String dateValid(BuildContext context, String date) {
+    if (date.trim().isEmpty) {
+      return FlutterI18n.translate(context, Strings.dateRequired);
+    }
+    return null;
+  }
+  static String timeValid(BuildContext context, String date) {
+    if (date.trim().isEmpty) {
+      return FlutterI18n.translate(context, Strings.timeRequired);
+    }
+    return null;
+  }
 }

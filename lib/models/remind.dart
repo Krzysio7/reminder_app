@@ -15,12 +15,14 @@ class Remind {
   String title;
   String description;
   bool enabled;
+  String dateTime;
 
   Remind({
     this.id,
     this.title,
     this.description,
     this.enabled,
+    this.dateTime,
   });
 
   factory Remind.fromMap(Map<String, dynamic> json) => new Remind(
@@ -28,13 +30,15 @@ class Remind {
         title: json["title"],
         description: json["description"],
         enabled: json["enabled"] == 1,
+        dateTime: json["dateTime"],
       );
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> remindMap = {
       "title": title,
       "description": description,
-      "enabled": enabled? 1 : 0,
+      "enabled": enabled ? 1 : 0,
+      "dateTime": dateTime,
     };
     if (id != null) remindMap["id"] = id;
 

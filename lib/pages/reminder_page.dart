@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taskreminderapp/bloc/reminder_bloc.dart';
 import 'package:taskreminderapp/config/assets.dart';
 import 'package:taskreminderapp/models/remind.dart';
-import 'package:taskreminderapp/utils/db_provider.dart';
 import 'package:taskreminderapp/widgets/dialogs/add_edit_remind.dart';
 
 class ReminderPage extends StatefulWidget {
@@ -11,12 +11,14 @@ class ReminderPage extends StatefulWidget {
 }
 
 class _ReminderPageState extends State<ReminderPage> {
+  final bloc = RemindersBloc();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        FutureBuilder<List<Remind>>(
-          future: DBProvider.db.getAllReminds(),
+        StreamBuilder<List<Remind>>(
+          stream: bloc.reminders,
           builder:
               (BuildContext context, AsyncSnapshot<List<Remind>> snapshot) {
             if (snapshot.hasData) {
@@ -25,11 +27,21 @@ class _ReminderPageState extends State<ReminderPage> {
                 itemBuilder: (BuildContext context, int index) {
                   Remind item = snapshot.data[index];
                   return ListTile(
-                    title: Text(item.title, style: TextStyle(fontSize: 40.0),),
-                    subtitle: Text(item.description, style: TextStyle(fontSize: 40.0), overflow: TextOverflow.ellipsis,),
-                    leading: Text(item.id.toString(), style: TextStyle(fontSize: 40.0),),
+                    title: Text(
+                      item.title,
+                      style: TextStyle(fontSize: 40.0),
+                    ),
+                    subtitle: Text(
+                      item.description,
+                      style: TextStyle(fontSize: 40.0),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    leading: Text(
+                      item.id.toString(),
+                      style: TextStyle(fontSize: 40.0),
+                    ),
                     trailing: GestureDetector(
-                      onTap: () => { },
+                      onTap: () => bloc.delete(item.id),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -53,6 +65,7 @@ class _ReminderPageState extends State<ReminderPage> {
                       await showDialog(
                         context: context,
                         builder: (BuildContext context) => AddEdit(
+                          remindBloc: bloc,
                           edit: true,
                           remindObject: item,
                         ),
@@ -62,7 +75,9 @@ class _ReminderPageState extends State<ReminderPage> {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider(height: 2.0,);
+                  return Divider(
+                    height: 2.0,
+                  );
                 },
               );
             } else {
@@ -92,6 +107,7 @@ class _ReminderPageState extends State<ReminderPage> {
                   await showDialog(
                     context: context,
                     builder: (BuildContext context) => AddEdit(
+                      remindBloc: bloc,
                       edit: false,
                     ),
                   );
@@ -108,5 +124,11 @@ class _ReminderPageState extends State<ReminderPage> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
   }
 }

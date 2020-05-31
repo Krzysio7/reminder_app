@@ -32,8 +32,8 @@ class DBProvider {
             "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             "title TEXT,"
             "description TEXT,"
-            "enabled BIT"
-            "date TEXT"
+            "enabled BIT,"
+            "dateTime TEXT"
             ")");
       },
     );

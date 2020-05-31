@@ -10,6 +10,9 @@ abstract class Strings {
   static const String save = 'save';
   static const String chooseDate = 'choose_date';
   static const String chooseTime = 'choose_time';
-  static const String titleRequired = 'titleRequired';
-  static const String descriptionRequired= 'descriptionRequired';
+  static const String titleRequired = 'title_required';
+  static const String descriptionRequired= 'description_required';
+  static const String dateRequired= 'date_required';
+  static const String timeRequired= 'time_required';
+  static const String change= 'change';
 }

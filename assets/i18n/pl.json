@@ -11,5 +11,8 @@
   "choose_date" : "Wybierz datę przypomnienia:",
   "choose_time" : "Wybierz godzinę przypomnienia:",
   "title_required" : "Tytuł powiadomienia jest wymagany",
-  "description_required" : "Opis powiadomienia jest wymagany"
+  "description_required" : "Opis powiadomienia jest wymagany",
+  "date_required" : "Podaj datę alarmu",
+  "time_required" : "Podaj czas alarmu",
+  "change" : "Zmień"
 }
